@@ -1,13 +1,18 @@
 <html>
-    <head>
-        <title>Todo List</title>
-    </head>
-    <body>
-        <div>
-            <input type='text' name='todo_input'>
-            <button type='submit'>Add Todo</button>
-            <div class='todos'></div>
+
+<head>
+    <title>Todo List</title>
+</head>
+
+<body>
+    <div>
+        <input type='text' id="taskin" name='todo_input'>
+        <button type='submit' id="mybtn" onClick="AddTask()">Add Todo</button>
+        <div class='todos' id="todoDiv">
+
         </div>
-    </body>
-    <script src='./script.js'></script>
+    </div>
+</body>
+<script src='./script.js'></script>
+
 </html>
