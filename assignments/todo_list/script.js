@@ -1,101 +1,53 @@
-let select = document.getElementById('dropdown');
-let answer = document.getElementById('answer');
-var completed = [];
-var pending = [];
-​
-async function funcName(url){
-    const response = await fetch(url);
-    var data = await response.json();
-    console.log(data);
-    for(let i=0; i<data.length;i++){
-        if(data[i]['completed']===true){
-            completed.push(data[i]);
-        }else{
-            pending.push(data[i]);
-        }
+const todos_json = [];
+const completed_todos = [];
+const pending_todos = [];
+// fetching the json and extracting the data
+fetch("https://jsonplaceholder.typicode.com/todos")
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach((entry) => {
+      todos_json.push(entry);
+      if (entry.completed == true) {
+        completed_todos.push(entry.title);
+      } else {
+        pending_todos.push(entry.title);
+      }
+    });
+  });
+
+const all_tasks = document.querySelector(".all_todos");
+const completed = document.querySelector(".completed_todos");
+const pending = document.querySelector(".pending_todos");
+const result = document.querySelector(".result");
+const all_todos_div = document.querySelector(".all_todos_div");
+const completed_todos_div = document.querySelector(".completed_todos_div");
+const pending_todos_div = document.querySelector(".pending_todos_div");
+//   Event Listeners
+all_tasks.addEventListener("click", () => {
+  todos_json.forEach((obj) => {
+    const p_tag = document.createElement("p");
+    p_tag.innerHTML = obj.title;
+    if (obj.completed == true) {
+      p_tag.style.color = "green";
+    } else {
+      p_tag.style.color = "yellow";
     }
-​
-​
-    select.addEventListener('change', ()=>{
-        let status = select.value;
-        if(status==='completed'){
-            answer.innerHTML = "";
-​
-            for(let i=0; i<completed.length; i++){
-​
-                let div = document.createElement('div');
-                div.setAttribute('class','rows');
-​
-                let h1 = document.createElement('h4');
-                let h2 = document.createElement('h4');
-                let h3 = document.createElement('h4');
-                let h4 = document.createElement('h4');
-​
-                h1.innerText = completed[i].userId;
-                h2.innerText = completed[i].id;
-                h3.innerText = completed[i].title;
-                h4.innerText = completed[i].completed;
-​
-                div.appendChild(h1);
-                div.appendChild(h2);
-                div.appendChild(h3);
-                div.appendChild(h4);
-​
-                answer.appendChild(div)
-            }
-        }else if(status === 'pending'){
-            answer.innerHTML = "";
-​
-            for(let i=0; i<pending.length; i++){
-​
-                let div = document.createElement('div');
-                div.setAttribute('class','rows');
-​
-                let h1 = document.createElement('h4');
-                let h2 = document.createElement('h4');
-                let h3 = document.createElement('h4');
-                let h4 = document.createElement('h4');
-​
-                h1.innerText = pending[i].userId;
-                h2.innerText = pending[i].id;
-                h3.innerText = pending[i].title;
-                h4.innerText = pending[i].completed;
-​
-                div.appendChild(h1);
-                div.appendChild(h2);
-                div.appendChild(h3);
-                div.appendChild(h4);
-​
-                answer.appendChild(div)
-            }
-        }else{
-            answer.innerHTML = "";
-​
-            for(let i=0; i<data.length; i++){
-​
-                let div = document.createElement('div');
-                div.setAttribute('class','rows');
-​
-                let h1 = document.createElement('h4');
-                let h2 = document.createElement('h4');
-                let h3 = document.createElement('h4');
-                let h4 = document.createElement('h4');
-​
-                h1.innerText = data[i].userId;
-                h2.innerText = data[i].id;
-                h3.innerText = data[i].title;
-                h4.innerText = data[i].completed;
-​
-                div.appendChild(h1);
-                div.appendChild(h2);
-                div.appendChild(h3);
-                div.appendChild(h4);
-​
-                answer.appendChild(div)
-            }
-        }
-    })
-}
-​
-var url = 'https://jsonplaceholder.typicode.com/todos';
-var total = funcName(url);
+    all_todos_div.appendChild(p_tag);
+  });
+});
+completed.addEventListener("click", () => {
+  completed_todos.forEach((data) => {
+    const p_tag = document.createElement("p");
+    p_tag.innerHTML = data;
+    p_tag.style.color = "green";
+    completed_todos_div.appendChild(p_tag);
+  });
+});
+pending.addEventListener("click", () => {
+  pending_todos.forEach((data) => {
+    const p_tag = document.createElement("p");
+    p_tag.innerHTML = data;
+    p_tag.style.color = "yellow";
+    pending_todos_div.appendChild(p_tag);
+  });
+});

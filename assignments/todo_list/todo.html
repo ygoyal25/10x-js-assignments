@@ -1,38 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-​
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch JSON Data</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/f757e26fd1.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo&family=Zilla+Slab&display=swap" rel="stylesheet">
+
 </head>
-​
 
 <body>
-    <div class="container">
-        <select name="" id="dropdown">
-            <option value="both">Both</option>
-            <option value="completed">completed</option>
-            <option value="pending">pending</option>
-        </select>
-        ​
-        <div class="main">
-            <div class="heading">
-                <h3 id="uid">User ID</h3>
-                <h3 id="id">ID</h3>
-                <h3 id="title">title</h3>
-                <h3 id="done">Completed</h3>
-            </div>
-        </div>
-        <div class="output" id="answer">
-        </div>
-    </div>
-    ​
-    <script src="./script.js"></script>
-</body>
-​
+    <div>
+        <input type='text' name='todo_input'>
+        <button type='submit'>Add Todo</button>
+        <div class='todos'></div>
+        <div class="content">
+            <div class="header_section">
+                <h1>My To-Dos</h1>
+                <button class="all_todos">All Tasks</button>
+                <button class="completed_todos">Completed</button>
+                <button class="pending_todos">Pending</button>
+                <span class="list-icon"><i class="fas fa-list-ul"></i></span>
 
-</html>
+            </div>
+            <!-- To-do list div -->
+            <div class="result">
+                <div class="all_todos_div"></div>
+                <div class="completed_todos_div"></div>
+                <div class="pending_todos_div"></div>
+            </div>
+
+        </div>
+</body>
+<script src='./script.js'></script>
